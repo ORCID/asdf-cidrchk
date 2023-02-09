@@ -42,9 +42,9 @@ download_release() {
 
   local arch
   case "$(uname -m)" in
-    x86_64) arch=64bit ;;
-    x86) arch=32bit ;;
-    aarch64|arm64) arch=ARM64 ;;
+  x86_64) arch=64bit ;;
+  x86) arch=32bit ;;
+  aarch64 | arm64) arch=ARM64 ;;
   esac
 
   url="$GH_REPO/releases/download/v${version}/cidrchk_${version}_${platform}-${arch}.tar.gz"
