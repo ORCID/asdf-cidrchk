@@ -37,14 +37,13 @@ download_release() {
   version="$1"
   filename="$2"
 
-  local platform
-  [ "Linux" = "$(uname)" ] && platform="Linux" || platform="macOS"
+  local platform="$( echo $(uname) | tr '[:upper:]' '[:lower:]')"
 
   local arch
   case "$(uname -m)" in
   x86_64) arch=64bit ;;
   x86) arch=32bit ;;
-  aarch64 | arm64) arch=ARM64 ;;
+  aarch64 | arm64) arch=arm64 ;;
   esac
 
   url="$GH_REPO/releases/download/v${version}/cidrchk_${version}_${platform}-${arch}.tar.gz"
