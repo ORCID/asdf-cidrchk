@@ -39,14 +39,15 @@ download_release() {
 
   local platform="$( echo $(uname) | tr '[:upper:]' '[:lower:]')"
 
-  local arch
-  case "$(uname -m)" in
-  x86_64) arch=64bit ;;
-  x86) arch=32bit ;;
-  aarch64 | arm64) arch=arm64 ;;
-  esac
+  local arch_test=$(uname -m)
 
-  url="$GH_REPO/releases/download/v${version}/cidrchk_${version}_${platform}-${arch}.tar.gz"
+  if [[ "$arch_test" = x86_64 ]]; then
+    arch=amd64
+  else
+    arch=$arch_test
+  fi
+
+  url="$GH_REPO/releases/download/v${version}/cidrchk_${platform}_${arch}.tar.gz"
 
   echo "* Downloading $TOOL_NAME release $version..."
   curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
