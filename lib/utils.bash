@@ -37,7 +37,7 @@ download_release() {
   version="$1"
   filename="$2"
 
-  local platform="$( echo $(uname) | tr '[:upper:]' '[:lower:]')"
+  local platform="$(echo $(uname) | tr '[:upper:]' '[:lower:]')"
 
   local arch_test=$(uname -m)
 
